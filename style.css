@@ -1,0 +1,740 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Variables for easy branding changes */
+:root {
+  --primary: #e63946;
+  --primary-hover: #c1272d;
+  --text-main: #1a1a1a;
+  --text-muted: #666666;
+  --bg-light: #f9fafb;
+  --white: #ffffff;
+  --border: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  background: radial-gradient(
+    circle at top left,
+    #f5f3ff 0%,
+    #ffffff 40%,
+    #f9fafb 100%
+  );
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+/* --- Navigation --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+/* Styling for the Logo Text */
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.logo-text span {
+  color: var(--primary); /* Makes "HEADS" purple/blue */
+  font-weight: 400; /* Makes "HEADS" thinner for contrast */
+}
+
+/* Base style for the Logo Icon container */
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px; /* Smooth, modern corner */
+  background: #f0f0ff; /* A very faint purple background, like the screenshot's 'SOK Academy' logo */
+  color: var(--primary); /* Wrench color starts as purple */
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    /* background 0.2s, */ color 0.2s;
+}
+
+/* The Hover State: Create an interactive mechanical rotation */
+.logo:hover .logo-icon {
+  transform: rotate(
+    45deg
+  ); /* Subtle counter-clockwise rotation, like loosening a bolt */
+  background: var(--primary); /* Container turns solid purple */
+  color: white; /* Wrench turns white */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease; /* This makes the line "grow" */
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* This makes the line grow to 100% width on hover */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-auth .btn-cta-sm {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 0 rgba(99, 102, 241, 0);
+}
+
+.nav-auth .btn-cta-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  filter: brightness(1.1);
+}
+
+.btn-cta-sm {
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- Hero Section --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 90vh;
+  justify-content: center;
+  padding: 120px 20px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.top-badge {
+  background: #f0f0ff;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 50px;
+  margin-bottom: 32px;
+  border: 1px solid #e0e7ff;
+
+  display: inline-block;
+  width: fit-content;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Fluid typography */
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+h1 span {
+  color: var(--primary);
+}
+
+h2 span {
+  color: var(--primary);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+/* --- Buttons --- */
+.cta-group {
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: var(--white);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 850px) {
+  .nav-links,
+  .nav-auth {
+    display: none;
+  }
+  .hero {
+    padding: 80px 20px;
+  }
+  .cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.services-overview {
+  padding: 100px 8%;
+  background-color: var(--white);
+
+  /* border-top: 1px solid var(--border); */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* text-align: center; */
+  /* min-height: 90vh; */
+  /* justify-content: center; */
+  /* padding: 120px 20px; */
+  /* max-width: 1050px; */
+  /* margin: 0 auto;  */
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  /* Soft shadow from your screenshot */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.1);
+}
+
+.service-icon {
+  color: var(--primary);
+  background: #f5f3ff;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin: 0 auto 25px auto;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  /* max-width: 700px; */
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-main);
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Responsive fix */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pricing Section Styling */
+.pricing-overview {
+  padding: 100px 8%;
+  background-color: var(--bg-light);
+}
+
+.pricing-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white; /* Dark charcoal background from the screenshot */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pricing-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid black;
+  color: black;
+  font-size: 1.1rem;
+}
+
+/* Remove border from the last item */
+.pricing-list li:last-child {
+  border-bottom: none;
+}
+
+/* Dot indicators similar to the screenshot list style */
+.pricing-list li::before {
+  content: "->";
+  color: black;
+  margin-right: 15px;
+  font-size: 1.5rem;
+}
+
+.service-name {
+  font-weight: 700;
+  flex-grow: 1;
+}
+
+.service-price {
+  font-weight: 400;
+  text-align: right;
+  color: black;
+}
+
+.service-price small {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 4px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .pricing-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .service-price {
+    text-align: left;
+  }
+}
+
+.diagnostic-overview {
+  padding: 120px 8%;
+  background-color: #ffffff;
+}
+
+.diagnostic-flex {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Container for the icon */
+.engine-light-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.tyre-icon {
+  color: #e63946;
+  filter: drop-shadow(0 0 20px rgba(230, 57, 70, 0.4));
+  animation: rotate-slow 10s infinite linear;
+}
+
+.tyre-icon circle,
+.tyre-icon path {
+  stroke: #e63946 !important; /* Forces the Metz-Tessy Red */
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.step-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.step-list li {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.step-num {
+  background: #f5f3ff;
+  color: var(--primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.step-list strong {
+  display: block;
+  color: var(--text-main);
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.step-list p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .diagnostic-flex {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .diagnostic-image {
+    width: 100%;
+    padding: 40px;
+  }
+}
+
+.top-badge1 {
+  background: #f0f0ff;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid #e0e7ff;
+  width: fit-content;
+  margin-bottom: 30px;
+  margin-left: 240px;
+  /* margin: 0 auto; */
+}
+
+/* Styling for the About Section */
+.about-overview {
+  padding: 120px 8%;
+  background-color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Specific centering for this header type */
+.section-header-centered {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 60px auto;
+}
+
+.section-header-centered .main-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+/* The dark, centered text block inspired by the SOK 'Delivering knowledge' banner */
+.about-text-block {
+  background: white; /* Dark charcoal from SOK styling */
+  color: #111827;
+  padding: 60px 80px;
+  border-radius: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  line-height: 1.7;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.about-text-block p {
+  margin-bottom: 25px;
+}
+
+/* Optional styling to make the first paragraph 'pop' like a mission statement */
+.mission-statement {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #111827;
+  border-left: 3px solid var(--primary);
+  padding-left: 20px;
+}
+
+/* Centering the button within the block */
+.cta-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Specific styling for the large button from SOK image */
+.btn-large {
+  padding: 18px 40px;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.faq-section {
+  padding: 100px 8%;
+  background-color: #fcfcfd;
+}
+
+/* Tab Bar Styling from sc 11 */
+.faq-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+}
+
+.tab-btn {
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Accordion Styling */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+  padding-bottom: 24px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Toggle Class */
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-item.active .icon {
+  transform: rotate(180deg);
+}
+
+.contact-section {
+  padding: 100px 8%;
+  background-color: #ffffff;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: 60px auto 0 auto;
+  text-align: center;
+}
+
+.contact-card {
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Subtle hover effect to keep it feeling like a modern SaaS app */
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  color: var(--text-main);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-card h3 {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #e63946; /* Muted gray for the label */
+  margin-bottom: 15px;
+}
+
+.contact-card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.contact-card a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.contact-card a:hover {
+  color: var(--primary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
